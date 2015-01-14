@@ -78,3 +78,15 @@ according to the docs on the [Graphite wiki][].
 
 [Graphite wiki]: http://graphite.wikidot.com
 [examples/example-client.py]: https://github.com/graphite-project/carbon/blob/master/examples/example-client.py
+
+## Some notes on different rollup scripts for Ceres
+
+There are several rollup scripts available (you need to run rollup frequently for Ceres, otherwise it won't lowern retentions of existing data):
+
+- ceres-maintenance's rollup plugin - main and the most tested plugin
+- simple-rollup.py - simplier version of rollup (based on the plugin), standalone, easier to read. Should behave more or less same as plugin.
+- simple-rollup-ng.py - rewritten from scratch. It should be faster than simple-rollup. It's a lot more easier to read than simple-rollup (due to
+ beeing more or less pep8 complaint, and also it have more comments in the code), but it's less tested. It also require user to run merge
+ afterwards, because it tends to produce some ammount of small files. One of the problems that it should fix - was small rare data corruptions that
+ occured with simple-rollup and also it uses same "baseline" time for all rollup-related work. Use at your own risk, if you want stability, stick
+ with simple-rollup or ceres-maintenance plugin.
